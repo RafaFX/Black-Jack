@@ -181,22 +181,22 @@ const cards = [
     },
     {
         id: 37,
-        value: 10,
+        value: 11,
         src: 'A-C.png'
     },
     {
         id: 38,
-        value: 10,
+        value: 11,
         src: 'A-D.png'
     },
     {
         id: 39,
-        value: 10,
+        value: 11,
         src: 'A-H.png'
     },
     {
         id: 40,
-        value: 10,
+        value: 11,
         src: 'A-S.png'
     },
     {
@@ -261,12 +261,19 @@ const cards = [
     }
 ]
 
+let faceCard = 0
+
 const dealerDiv = document.getElementById('dealer-cards');
 const dealerCardsValue = document.getElementById('dealerCardsValue');
 
 const playerDiv = document.getElementById('player-cards');
 const playerCardsValue = document.getElementById('playerCardsValue');
 
+const winner = document.getElementById('winner');
+
+const buttonRestart = document.getElementById('button-restart');
+
+buttonRestart.onclick = reloadPage;
 
 const dealerCards = []
 const playerCards = []
@@ -275,7 +282,7 @@ console.log(dealerCards);
 console.log(playerCards);
 
 function getRandomInt() {
-    return Math.floor((Math.random() * 52) + 1);
+    return Math.floor(Math.random() * 52);
 }
 
 function dealCard (div,cardsArray){
@@ -283,7 +290,12 @@ function dealCard (div,cardsArray){
 
     const card = cards[getRandomInt()]
 
-    cardimg.src = `/cards/${card.src}`
+    if(faceCard === 0){
+        cardimg.src = `/cards/back.png`
+        faceCard = 1
+    }else {
+        cardimg.src = `/cards/${card.src}`
+    }
 
     div.appendChild(cardimg);
 
@@ -294,23 +306,44 @@ function dealCardsInicialCards(div,cardsArray) {
 
     dealCard(div,cardsArray)
     dealCard(div,cardsArray)
-
 }
 
-function countCardsValues (cardsArray){
+function countCardsValues (cardsArray,valueDiv){
     let result = 0;
 
     cardsArray.forEach(card => {
         console.log(card.value);
         result += card.value
     });
+    valueDiv.textContent = `O valor das cartas é: ${result}`;
     return result
 }
 
 
-dealCardsInicialCards(dealerDiv,dealerCards);
-dealCardsInicialCards(playerDiv,playerCards);
+function startGame(){
+    dealCardsInicialCards(dealerDiv,dealerCards);
+    dealCardsInicialCards(playerDiv,playerCards);
+    console.log(countCardsValues(playerCards,playerCardsValue));
+    console.log(countCardsValues(dealerCards,dealerCardsValue));
+
+    let winnerMessage = '';
+
+    if(countCardsValues(playerCards,playerCardsValue) === 21){
+        winner.textContent = 'O player ganhou!'
+    }
+
+
+
+}
+
+
+function reloadPage (){
+    document.location.reload(true);
+}
+
+startGame();
+
+
 
 /* dealCard(playerDiv,playerCards) */
 
-console.log(countCardsValues(playerCards));

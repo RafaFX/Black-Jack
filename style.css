@@ -1,9 +1,11 @@
 body {
     justify-content: center;
+    background-color: green;
 }
 
 img {
     width: 240px;
+    margin: 8px;
 }
 
 #dealer-section {
@@ -18,4 +20,12 @@ img {
     border: 1px solid green;
     align-items: center;
     flex-direction: column;
+}
+
+#winner {
+    text-align: center;
+}
+
+#div-button-restart {
+    text-align: center;
 }
