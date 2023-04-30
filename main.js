@@ -291,7 +291,7 @@ function dealCard (div,cardsArray){
     const card = cards[getRandomInt()]
 
     if(faceCard === 0){
-        cardimg.src = `/cards/back.png`
+        cardimg.src = `/cards/BACK.png`
         faceCard = 1
     }else {
         cardimg.src = `/cards/${card.src}`
