@@ -270,6 +270,7 @@ const playerDiv = document.getElementById('player-cards');
 const playerCardsValue = document.getElementById('playerCardsValue');
 
 const winner = document.getElementById('winner');
+const playerMessage = document.getElementById('player-message');
 
 const buttonRestart = document.getElementById('button-restart');
 
@@ -285,15 +286,15 @@ function getRandomInt() {
     return Math.floor(Math.random() * 52);
 }
 
-function dealCard (div,cardsArray){
+function dealCard(div, cardsArray) {
     const cardimg = document.createElement('img')
 
     const card = cards[getRandomInt()]
 
-    if(faceCard === 0){
+    if (faceCard === 0) {
         cardimg.src = `/cards/BACK.png`
         faceCard = 1
-    }else {
+    } else {
         cardimg.src = `/cards/${card.src}`
     }
 
@@ -302,15 +303,13 @@ function dealCard (div,cardsArray){
     cardsArray.push(card)
 }
 
-function dealCardsInicialCards(div,cardsArray) {
-
-    dealCard(div,cardsArray)
-    dealCard(div,cardsArray)
+function dealCardsInicialCards(div, cardsArray) {
+    dealCard(div, cardsArray)
+    dealCard(div, cardsArray)
 }
 
-function countCardsValues (cardsArray,valueDiv){
+function countCardsValues(cardsArray, valueDiv) {
     let result = 0;
-
     cardsArray.forEach(card => {
         console.log(card.value);
         result += card.value
@@ -320,24 +319,65 @@ function countCardsValues (cardsArray,valueDiv){
 }
 
 
-function startGame(){
-    dealCardsInicialCards(dealerDiv,dealerCards);
-    dealCardsInicialCards(playerDiv,playerCards);
-    console.log(countCardsValues(playerCards,playerCardsValue));
-    console.log(countCardsValues(dealerCards,dealerCardsValue));
+function startGame() {
+    dealCardsInicialCards(dealerDiv, dealerCards);
+    dealCardsInicialCards(playerDiv, playerCards);
 
-    let winnerMessage = '';
+    let player = countCardsValues(playerCards, playerCardsValue);
+    let dealer = countCardsValues(dealerCards, dealerCardsValue);
 
-    if(countCardsValues(playerCards,playerCardsValue) === 21){
-        winner.textContent = 'O player ganhou!'
-    }
-
-
-
+    checkMove(player,dealer);
 }
 
 
-function reloadPage (){
+
+function checkMove (playerCardsValues,dealerCardsValue){
+    if (playerCardsValues === 21) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues > 17) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsValues === 16) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues === 16) {
+        playerMessage.textContent = 'Comprar carta'
+        dealCard(playerDiv,playerCards)
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsValues === 15) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues === 15) {
+        playerMessage.textContent = 'Comprar carta'
+        dealCard(playerDiv,playerCards)
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsValues === 14) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues === 14) {
+        playerMessage.textContent = 'Comprar carta'
+        dealCard(playerDiv,playerCards)
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsValues === 13) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues === 13) {
+        playerMessage.textContent = 'Comprar carta'
+        dealCard(playerDiv,playerCards)
+    }
+    else if ((dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsValues === 12) {
+        playerMessage.textContent = 'Parar'
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsValues === 12) {
+        playerMessage.textContent = 'Comprar carta'
+        dealCard(playerDiv,playerCards)
+    }
+    //parei na 11
+}
+
+
+function reloadPage() {
     document.location.reload(true);
 }
 
