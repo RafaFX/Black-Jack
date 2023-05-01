@@ -285,31 +285,38 @@ function getRandomInt() {
 }
 
 function dealCard(div, cardsArray) {
-    const cardimg = document.createElement('img')
 
-    const card = cards[getRandomInt()]
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Esperou aqui')
+            const cardimg = document.createElement('img')
 
-    if (faceCard === 0) {
-        cardimg.src = `/cards/BACK.png`
-        cardimg.id = 'back-card'
-        faceCard = 1
-    } else {
-        cardimg.src = `/cards/${card.src}`
-    }
+            const card = cards[getRandomInt()]
 
-    div.appendChild(cardimg);
+            if (faceCard === 0) {
+                cardimg.src = `/cards/BACK.png`
+                cardimg.id = 'back-card'
+                faceCard = 1
+            } else {
+                cardimg.src = `/cards/${card.src}`
+            }
+            div.appendChild(cardimg);
+            cardsArray.push(card)
+            resolve()
+        }, 1000)
+    })
 
-    cardsArray.push(card)
 }
 
-function dealCardsInicialCards(div, cardsArray) {
-    dealCard(div, cardsArray)
-    dealCard(div, cardsArray)
+async function dealCardsInicialCards(div, cardsArray) {
+    await dealCard(div, cardsArray)
+    await dealCard(div, cardsArray)
 }
 
-function countCardsValues(cardsArray, valueDiv) {
+async function countCardsValues(cardsArray, valueDiv) {
     let result = 0;
     cardsArray.forEach(card => {
+        console.log(card.value)
         result += card.value
     });
     valueDiv.textContent = `O valor das cartas é: ${result}`;
@@ -317,23 +324,23 @@ function countCardsValues(cardsArray, valueDiv) {
 }
 
 
-function startGame() {
-    dealCardsInicialCards(dealerDiv, dealerCards);
-    dealCardsInicialCards(playerDiv, playerCards);
+async function startGame() {
+    await dealCardsInicialCards(dealerDiv, dealerCards);
+    await dealCardsInicialCards(playerDiv, playerCards);
 
     let player = countCardsValues(playerCards, playerCardsValue);
     let dealer = countCardsValues(dealerCards, dealerCardsValue);
 
-    checkMove(player,dealer);
+    checkMove(player, dealer);
 
 
 }
 
 
 
-function checkMove (playerCordsScore){
-    if(playerCordsScore > 20){
-        return winner.textContent ='A mesa ganhou';
+async function checkMove(playerCordsScore) {
+    if (playerCordsScore > 20) {
+        return winner.textContent = 'A mesa ganhou';
     }
     else if (playerCordsScore === 21) {
         playerMessage.textContent = 'Parar'
@@ -349,8 +356,8 @@ function checkMove (playerCordsScore){
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 16) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        await dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCordsScore === 15) {
         playerMessage.textContent = 'Parar'
@@ -358,8 +365,8 @@ function checkMove (playerCordsScore){
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 15) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCordsScore === 14) {
         playerMessage.textContent = 'Parar'
@@ -367,8 +374,8 @@ function checkMove (playerCordsScore){
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 14) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCordsScore === 13) {
         playerMessage.textContent = 'Parar'
@@ -376,8 +383,8 @@ function checkMove (playerCordsScore){
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 13) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
     else if ((dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCordsScore === 12) {
         playerMessage.textContent = 'Parar'
@@ -385,50 +392,49 @@ function checkMove (playerCordsScore){
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 12) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 10) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 10) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 9) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 9) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 8) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 8) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 7) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 7) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 6) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 6) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11 ) && playerCordsScore === 5) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCordsScore === 5) {
         playerMessage.textContent = 'Comprar carta'
-        dealCard(playerDiv,playerCards)
-        checkMove(countCardsValues(playerCards, playerCardsValue),countCardsValues(dealerCards,dealerCardsValue))
+        dealCard(playerDiv, playerCards)
+        checkMove(countCardsValues(playerCards, playerCardsValue), countCardsValues(dealerCards, dealerCardsValue))
     }
-    
+
 }
 
-function checkMoveDealer(){
+async function checkMoveDealer() {
     const backimg = document.getElementById('back-card');
-    console.log(backimg);
     return backimg.src = `/cards/${dealerCards[0].src}`
 }
 
 
-function reloadPage() {
+async function reloadPage() {
     document.location.reload(true);
 }
 
