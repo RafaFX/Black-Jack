@@ -302,7 +302,7 @@ function dealCard(div, cardsArray) {
             div.appendChild(cardimg);
             cardsArray.push(card)
             resolve()
-        }, 1000)
+        }, 2000)
     })
 
 }
