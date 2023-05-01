@@ -9,7 +9,7 @@ img {
 }
 
 #dealer-section {
-    height: 500px;
+    height: 600px;
     display: flex;
     border: 2px solid black;
     flex-direction: column;
@@ -17,7 +17,7 @@ img {
 }
 
 #player-section {
-    height: 500px;
+    height: 600px;
     display: flex;
     border: 2px solid black;
     align-items: center;
@@ -26,4 +26,5 @@ img {
 
 #div-button-restart {
     text-align: center;
+    margin: 15px;
 }
