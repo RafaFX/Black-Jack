@@ -321,7 +321,6 @@ function countCardsValues(cardsArray, valueDiv) {
         result += card.value
     });
     valueDiv.textContent = `O valor das cartas é: ${result}`;
-    console.log(result)
     return result
 }
 
@@ -343,7 +342,13 @@ async function checkMove(playerCardsScore) {
 
 
     if (playerCardsScore > 21) {
-        winner.textContent = 'A MESA GANHOU !!!!'
+        playerCards.forEach(card => {
+            if(card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40){
+                card.value = 1
+                checkMove(countCardsValues(playerCards, playerCardsValue))
+            }
+        })
+        winner.textContent = 'A MESA GANHOU !!!!';
     }
     else if (playerCardsScore === 21) {
         playerMessage.textContent = 'Parar'
