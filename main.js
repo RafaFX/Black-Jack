@@ -327,6 +327,9 @@ function countCardsValues(cardsArray, valueDiv) {
 
 
 async function startGame() {
+
+    buttonStart.disabled = true
+    
     await dealCardsInicialCards(dealerDiv, dealerCards);
     await dealCardsInicialCards(playerDiv, playerCards);
 
@@ -434,14 +437,17 @@ async function checkMoveDealer() {
     backimg.src = `/cards/${dealerCards[0].src}`
     let dealer = countCardsValues(dealerCards, dealerCardsValue)
     let player = countCardsValues(playerCards, playerCardsValue)
-    if (dealer <= 16) {
+    if (dealer < 16) {
         await dealCard(dealerDiv, dealerCards)
         return checkMoveDealer();
     } else if (dealer > 21) {
+        await awaitTime();
         winner.textContent = 'O JOGADOR GANHOU!!!'
     } else if (dealer > player) {
+        await awaitTime();
         winner.textContent = 'A MESA GANHOU!!!'
     }else {
+        await awaitTime();
         winner.textContent = 'O JOGADOR GANHOU!!!'
     }
 }
