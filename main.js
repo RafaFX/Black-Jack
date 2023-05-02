@@ -354,7 +354,7 @@ async function checkMove(playerCardsScore) {
         playerMessage.textContent = 'Parar'
         return checkMoveDealer()
     }
-    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore > 17) {
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore >= 17) {
         playerMessage.textContent = 'Parar'
         return checkMoveDealer()
     }
@@ -399,6 +399,11 @@ async function checkMove(playerCardsScore) {
         return checkMoveDealer()
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 12) {
+        playerMessage.textContent = 'Comprar carta'
+        await dealCard(playerDiv, playerCards)
+        await checkMove(countCardsValues(playerCards, playerCardsValue))
+    }
+    else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 11) {
         playerMessage.textContent = 'Comprar carta'
         await dealCard(playerDiv, playerCards)
         await checkMove(countCardsValues(playerCards, playerCardsValue))
