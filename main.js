@@ -269,18 +269,29 @@ const dealerCardsValue = document.getElementById('dealerCardsValue');
 const playerDiv = document.getElementById('player-cards');
 const playerCardsValue = document.getElementById('playerCardsValue');
 
+const playerPersonDiv = document.getElementById('player-cards-person');
+const playerCardsPersonValue = document.getElementById('playerCardsPersonValue');
+
 const winner = document.getElementById('winner');
+const winnerPerson = document.getElementById('winner-person');
+
 const playerMessage = document.getElementById('player-message');
 
 const buttonRestart = document.getElementById('button-restart');
 const buttonStart = document.getElementById('button-start');
 
+const buttonHint = document.getElementById('button-hit');
+const buttonStop = document.getElementById('button-stop');
+
 buttonRestart.onclick = reloadPage;
 
 buttonStart.onclick = startGame;
 
+
+
 const dealerCards = []
 const playerCards = []
+const playerPersonCards = []
 
 
 function getRandomInt() {
@@ -310,8 +321,28 @@ function dealCard(div, cardsArray) {
 
 }
 
+function stopCards() {
+    return checkMoveDealer();
+}
+
+function dealCardPerson() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const cardimg = document.createElement('img')
+
+            const card = cards[getRandomInt()]
+
+            cardimg.src = `/cards/${card.src}`
+
+            playerPersonDiv.appendChild(cardimg);
+            playerPersonCards.push(card)
+            resolve()
+        }, 1500)
+    })
+
+}
+
 async function dealCardsInicialCards(div, cardsArray) {
-    await dealCard(div, cardsArray)
     await dealCard(div, cardsArray)
 }
 
@@ -328,9 +359,18 @@ function countCardsValues(cardsArray, valueDiv) {
 async function startGame() {
 
     buttonStart.disabled = true
-    
+
     await dealCardsInicialCards(dealerDiv, dealerCards);
+
     await dealCardsInicialCards(playerDiv, playerCards);
+
+    await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
+
+    await dealCardsInicialCards(dealerDiv, dealerCards);
+
+    await dealCardsInicialCards(playerDiv, playerCards);
+
+    await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
 
     await checkMove(countCardsValues(playerCards, playerCardsValue));
 
@@ -343,24 +383,30 @@ async function checkMove(playerCardsScore) {
 
     if (playerCardsScore > 21) {
         playerCards.forEach(card => {
-            if(card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40){
+            if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
                 card.value = 1
                 checkMove(countCardsValues(playerCards, playerCardsValue))
+            }else {
+                countCardsValues(playerCards, playerCardsValue)
+                playerMessage.textContent = 'Estorou'
+                return buttonStop.onclick = stopCards;
             }
         })
-        winner.textContent = 'A MESA GANHOU !!!!';
     }
     else if (playerCardsScore === 21) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore >= 17) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsScore === 16) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 16) {
         playerMessage.textContent = 'Comprar carta'
@@ -369,7 +415,8 @@ async function checkMove(playerCardsScore) {
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsScore === 15) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 15) {
         playerMessage.textContent = 'Comprar carta'
@@ -378,7 +425,8 @@ async function checkMove(playerCardsScore) {
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsScore === 14) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 14) {
         playerMessage.textContent = 'Comprar carta'
@@ -387,7 +435,8 @@ async function checkMove(playerCardsScore) {
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsScore === 13) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 13) {
         playerMessage.textContent = 'Comprar carta'
@@ -396,7 +445,8 @@ async function checkMove(playerCardsScore) {
     }
     else if ((dealerCards[1].value === 4 || dealerCards[1].value === 4 || dealerCards[1].value === 5 || dealerCards[1].value === 6) && playerCardsScore === 12) {
         playerMessage.textContent = 'Parar'
-        return checkMoveDealer()
+        buttonStop.onclick = stopCards;
+        return buttonHint.onclick = dealCardPerson;
     }
     else if ((dealerCards[1].value === 2 || dealerCards[1].value === 3 || dealerCards[1].value === 7 || dealerCards[1].value === 8 || dealerCards[1].value === 9 || dealerCards[1].value === 10 || dealerCards[1].value === 11) && playerCardsScore === 12) {
         playerMessage.textContent = 'Comprar carta'
@@ -443,22 +493,66 @@ async function checkMove(playerCardsScore) {
 
 async function checkMoveDealer() {
     await awaitTime();
+    dealerCards.forEach(card => {
+        if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+            card.value = 1
+            return checkMoveDealer()
+        }
+    })
     const backimg = document.getElementById('back-card');
     backimg.src = `/cards/${dealerCards[0].src}`
     let dealer = countCardsValues(dealerCards, dealerCardsValue)
     let player = countCardsValues(playerCards, playerCardsValue)
+    let playerPerson = countCardsValues(playerPersonCards, playerCardsPersonValue)
     if (dealer < 16) {
         await dealCard(dealerDiv, dealerCards)
         return checkMoveDealer();
-    } else if (dealer > 21) {
+    } else if (dealer > 21 && playerPerson <= 21 && player <= 21) {
         await awaitTime();
-        winner.textContent = 'O JOGADOR GANHOU!!!'
-    } else if (dealer > player) {
+        winner.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+        winnerPerson.textContent = 'O PLAYER GANHOU DA MESA!!!'
+    } else if (dealer > player && dealer > playerPerson) {
         await awaitTime();
-        winner.textContent = 'A MESA GANHOU!!!'
-    }else {
+        winner.textContent = 'A MESA IA GANHOU!!!'
+        winnerPerson.textContent = 'A MESA IA GANHOU!!!'
+    }
+    else if (dealer < player && dealer < playerPerson) {
         await awaitTime();
-        winner.textContent = 'O JOGADOR GANHOU!!!'
+        winner.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+        winnerPerson.textContent = 'O PLAYER GANHOU DA MESA!!!'
+    }
+    else if (dealer < player && dealer > playerPerson) {
+        await awaitTime();
+        winner.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+        winnerPerson.textContent = 'A MESA IA GANHOU!!!'
+    }
+    else if (dealer > player && dealer < playerPerson) {
+        await awaitTime();
+        winner.textContent = 'A MESA IA GANHOU!!!'
+        winnerPerson.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+    }else if (dealer === player && dealer < playerPerson) {
+        await awaitTime();
+        winner.textContent = 'EMPATE!!!'
+        winnerPerson.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+    }else if (dealer === player && dealer > playerPerson) {
+        await awaitTime();
+        winner.textContent = 'EMPATE!!!'
+        winnerPerson.textContent = 'A MESA IA GANHOU!!!'
+    }
+    else if (dealer < player && dealer === playerPerson) {
+        await awaitTime();
+        winner.textContent = 'O PLAYER IA GANHOU DA MESA!!!'
+        winnerPerson.textContent = 'EMPATE!!!'
+    }
+    else if (dealer > player && dealer === playerPerson) {
+        await awaitTime();
+        winner.textContent = 'A MESA IA GANHOU!!!'
+        winnerPerson.textContent = 'EMPATE!!!'
+    }
+    else {
+        await awaitTime();
+        winner.textContent = 'EMPATE!!!'
+        winnerPerson.textContent = 'EMPATE!!!'
     }
 }
 

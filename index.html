@@ -9,26 +9,50 @@
 </head>
 <body>
     <section id="dealer-section" >
-        <h2>Dealer Cards</h2>
+        <h2>Dealer Cards IA</h2>
         <div id="dealer-cards">
             
         </div>
         <h1 id="dealerCardsValue" ></h1>
     </section>
 
-    <div id="div-button" >
-    <h1 id="winner"></h1>
-        <button id="button-start" >Start</button>
-        <button id="button-restart">Restart</button>
+    <div id="box-results">
+        
+        <h1 id="winner-person"></h1>
+
+
+        <div id="div-button" >
+        
+            <button id="button-start" >Start</button>
+            <button id="button-restart">Restart</button>
+        </div>
+
+        <h1 id="winner"></h1>
     </div>
 
-    <section id="player-section" >
-        <h2>Player Cards</h2>
-        <h1 id="player-message" ><h1>
-        <div id="player-cards">
-        </div>
-        <h1 id="playerCardsValue"></h1>
-    </section>
+
+    <div id="box-players">
+            <section id="player-section" >
+                <h2>Player IA Cards</h2>
+                <h1 id="player-message" ><h1>
+                <div id="player-cards">
+                </div>
+                <h1 id="playerCardsValue"></h1>
+            </section>
+            <section id="player-section-person" >
+                <h2>Player Person Cards</h2>
+                <h1 id="player-message-person" ><h1>
+                <div id="player-cards-person">
+                </div>
+                <h1 id="playerCardsPersonValue"></h1>
+                <div id="div-button-person" >
+                        <button id="button-hit" >Hit</button>
+                        <button id="button-stop">Stop</button>
+                </div>
+                
+            </section>
+    </div>
+    
 </body>
     <script src="main.js" ></script>
 </html>
