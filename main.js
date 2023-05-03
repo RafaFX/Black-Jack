@@ -501,6 +501,7 @@ async function checkMoveDealer() {
     })
     const backimg = document.getElementById('back-card');
     backimg.src = `/cards/${dealerCards[0].src}`
+    backimg.id = 'reveal-card';
     let dealer = countCardsValues(dealerCards, dealerCardsValue)
     let player = countCardsValues(playerCards, playerCardsValue)
     let playerPerson = countCardsValues(playerPersonCards, playerCardsPersonValue)
