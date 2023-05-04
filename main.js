@@ -1,568 +1,289 @@
-const cards = [
-    {
-        id: 1,
-        value: 2,
-        src: '2-C.png'
-    },
-    {
-        id: 2,
-        value: 2,
-        src: '2-D.png'
-    },
-    {
-        id: 3,
-        value: 2,
-        src: '2-H.png'
-    },
-    {
-        id: 4,
-        value: 2,
-        src: '2-S.png'
-    },
-    {
-        id: 5,
-        value: 3,
-        src: '3-C.png'
-    },
-    {
-        id: 6,
-        value: 3,
-        src: '3-D.png'
-    },
-    {
-        id: 7,
-        value: 3,
-        src: '3-H.png'
-    },
-    {
-        id: 8,
-        value: 3,
-        src: '3-S.png'
-    },
-    {
-        id: 9,
-        value: 4,
-        src: '4-C.png'
-    },
-    {
-        id: 10,
-        value: 4,
-        src: '4-D.png'
-    },
-    {
-        id: 11,
-        value: 4,
-        src: '4-H.png'
-    },
-    {
-        id: 12,
-        value: 4,
-        src: '4-S.png'
-    },
-    {
-        id: 13,
-        value: 5,
-        src: '5-C.png'
-    },
-    {
-        id: 14,
-        value: 5,
-        src: '5-D.png'
-    },
-    {
-        id: 15,
-        value: 5,
-        src: '5-H.png'
-    },
-    {
-        id: 16,
-        value: 5,
-        src: '5-S.png'
-    },
-    {
-        id: 17,
-        value: 6,
-        src: '6-C.png'
-    },
-    {
-        id: 18,
-        value: 6,
-        src: '6-D.png'
-    },
-    {
-        id: 19,
-        value: 6,
-        src: '6-H.png'
-    },
-    {
-        id: 20,
-        value: 6,
-        src: '6-S.png'
-    },
-    {
-        id: 21,
-        value: 7,
-        src: '7-C.png'
-    },
-    {
-        id: 22,
-        value: 7,
-        src: '7-D.png'
-    },
-    {
-        id: 23,
-        value: 7,
-        src: '7-H.png'
-    },
-    {
-        id: 24,
-        value: 7,
-        src: '7-S.png'
-    },
-    {
-        id: 25,
-        value: 8,
-        src: '8-C.png'
-    },
-    {
-        id: 26,
-        value: 8,
-        src: '8-D.png'
-    },
-    {
-        id: 27,
-        value: 8,
-        src: '8-H.png'
-    },
-    {
-        id: 28,
-        value: 8,
-        src: '8-S.png'
-    },
-    {
-        id: 29,
-        value: 9,
-        src: '9-C.png'
-    },
-    {
-        id: 30,
-        value: 9,
-        src: '9-D.png'
-    },
-    {
-        id: 31,
-        value: 9,
-        src: '9-H.png'
-    },
-    {
-        id: 32,
-        value: 9,
-        src: '9-S.png'
-    },
-    {
-        id: 33,
-        value: 10,
-        src: '10-C.png'
-    },
-    {
-        id: 34,
-        value: 10,
-        src: '10-D.png'
-    },
-    {
-        id: 35,
-        value: 10,
-        src: '10-H.png'
-    },
-    {
-        id: 36,
-        value: 10,
-        src: '10-S.png'
-    },
-    {
-        id: 37,
-        value: 11,
-        src: 'A-C.png'
-    },
-    {
-        id: 38,
-        value: 11,
-        src: 'A-D.png'
-    },
-    {
-        id: 39,
-        value: 11,
-        src: 'A-H.png'
-    },
-    {
-        id: 40,
-        value: 11,
-        src: 'A-S.png'
-    },
-    {
-        id: 41,
-        value: 10,
-        src: 'J-C.png'
-    },
-    {
-        id: 42,
-        value: 10,
-        src: 'J-D.png'
-    },
-    {
-        id: 43,
-        value: 10,
-        src: 'J-H.png'
-    },
-    {
-        id: 44,
-        value: 10,
-        src: 'J-S.png'
-    },
-    {
-        id: 45,
-        value: 10,
-        src: 'Q-C.png'
-    },
-    {
-        id: 46,
-        value: 10,
-        src: 'Q-D.png'
-    },
-    {
-        id: 47,
-        value: 10,
-        src: 'Q-H.png'
-    },
-    {
-        id: 48,
-        value: 10,
-        src: 'Q-S.png'
-    },
-    {
-        id: 49,
-        value: 10,
-        src: 'K-C.png'
-    },
-    {
-        id: 50,
-        value: 10,
-        src: 'K-D.png'
-    },
-    {
-        id: 51,
-        value: 10,
-        src: 'K-H.png'
-    },
-    {
-        id: 52,
-        value: 10,
-        src: 'K-S.png'
+(function () {
+
+    const dealerDiv = document.getElementById('dealer-cards');
+    const dealerCardsValue = document.getElementById('dealerCardsValue');
+
+    const playerDiv = document.getElementById('player-cards');
+    const playerCardsValue = document.getElementById('playerCardsValue');
+
+    const playerPersonDiv = document.getElementById('player-cards-person');
+    const playerCardsPersonValue = document.getElementById('playerCardsPersonValue');
+
+    const winner = document.getElementById('winner');
+    const winnerPerson = document.getElementById('winner-person');
+
+    const playerMessage = document.getElementById('player-message');
+
+    const buttonRestart = document.getElementById('button-restart');
+    const buttonStart = document.getElementById('button-start');
+
+    const buttonHit = document.getElementById('button-hit');
+    const buttonStop = document.getElementById('button-stop');
+
+    buttonRestart.onclick = reloadPage;
+
+    buttonStart.onclick = startGame;
+
+    const dealerCards = []
+    const playerCards = []
+    const playerPersonCards = []
+
+    function getRandomInt() {
+        return Math.floor(Math.random() * 52);
     }
-]
 
-let faceCard = false
+    async function dealCard(div, cardsArray) {
 
-const dealerDiv = document.getElementById('dealer-cards');
-const dealerCardsValue = document.getElementById('dealerCardsValue');
+        const cardimg = document.createElement('img')
+        const card = cards[getRandomInt()]
 
-const playerDiv = document.getElementById('player-cards');
-const playerCardsValue = document.getElementById('playerCardsValue');
-
-const playerPersonDiv = document.getElementById('player-cards-person');
-const playerCardsPersonValue = document.getElementById('playerCardsPersonValue');
-
-const winner = document.getElementById('winner');
-const winnerPerson = document.getElementById('winner-person');
-
-const playerMessage = document.getElementById('player-message');
-
-const buttonRestart = document.getElementById('button-restart');
-const buttonStart = document.getElementById('button-start');
-
-const buttonHit = document.getElementById('button-hit');
-const buttonStop = document.getElementById('button-stop');
-
-buttonRestart.onclick = reloadPage;
-
-buttonStart.onclick = startGame;
-
-
-
-const dealerCards = []
-const playerCards = []
-const playerPersonCards = []
-
-
-function getRandomInt() {
-    return Math.floor(Math.random() * 52);
-}
-
-function dealCard(div, cardsArray) {
-
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const cardimg = document.createElement('img')
-
-            const card = cards[getRandomInt()]
-
-            if (faceCard) {
-                cardimg.src = `/cards/${card.src}`
-            } 
-            else {
-                cardimg.src = `/cards/BACK.png`
-                cardimg.id = 'back-card'
-                faceCard = true
-            }
-            div.appendChild(cardimg);
-            cardsArray.push(card)
-            resolve()
-        }, 1500)
-    })
-
-}
-
-function stopCards() {
-    return checkMoveDealer();
-}
-
-function dealCardPerson() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const cardimg = document.createElement('img')
-
-            const card = cards[getRandomInt()]
-
+        if (dealerCards.length === 0) {
+            cardimg.src = `/cards/BACK.png`
+            cardimg.id = 'back-card'
+        } else {
+            await delay();
             cardimg.src = `/cards/${card.src}`
-
-            playerPersonDiv.appendChild(cardimg);
-            playerPersonCards.push(card)
-            resolve()
-        }, 1500)
-    })
-
-}
-
-async function dealCardsInicialCards(div, cardsArray) {
-    await dealCard(div, cardsArray)
-}
-
-function countCardsValues(cardsArray, valueDiv) {
-    let result = 0;
-    cardsArray.forEach(card => {
-        result += card.value
-    });
-    valueDiv.textContent = `O valor das cartas é: ${result}`;
-    return result
-}
-
-
-async function startGame() {
-
-    buttonStart.disabled = true
-
-    await dealCardsInicialCards(dealerDiv, dealerCards);
-
-    await dealCardsInicialCards(playerDiv, playerCards);
-
-    await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
-
-    await dealCardsInicialCards(dealerDiv, dealerCards);
-
-    await dealCardsInicialCards(playerDiv, playerCards);
-
-    await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
-
-    await checkMove(countCardsValues(playerCards, playerCardsValue));
-
-}
+        }
+        div.appendChild(cardimg);
+        cardsArray.push(card)
+    }
 
 
 
-async function checkMove(playerCardsScore) {
-    const card = dealerCards[1].value
+    function dealCardPerson() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const cardimg = document.createElement('img')
 
-    if (playerCardsScore > 21) {
-        playerCards.forEach(card => {
-            if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
-                card.value = 1
-                checkMove(countCardsValues(playerCards, playerCardsValue))
-            }else {
-                countCardsValues(playerCards, playerCardsValue)
-                playerMessage.textContent = 'Estorou'
-                buttonHit.onclick = dealCardPerson;
-                return buttonStop.onclick = stopCards;
-            }
+                const card = cards[getRandomInt()]
+
+                cardimg.src = `/cards/${card.src}`
+
+                playerPersonDiv.appendChild(cardimg);
+                playerPersonCards.push(card)
+                resolve()
+            }, 1500)
         })
     }
-    else if (playerCardsScore === 21) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if (card >= 2 && card <= 11 && playerCardsScore >= 17) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    //ARRUMARRRRRRRRRRRRRRRRR
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6) && playerCardsScore === 16) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 16) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6) && playerCardsScore === 15) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 15) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6) && playerCardsScore === 14) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 14) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6) && playerCardsScore === 13) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 13) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 4 ||  card === 5 || card === 6) && playerCardsScore === 12) {
-        playerMessage.textContent = 'Parar'
-        buttonStop.onclick = stopCards;
-        return buttonHit.onclick = dealCardPerson;
-    }
-    else if ((card === 2 || card === 3 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 12) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 11) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 10) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 9) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 8) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 ||  card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 7) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 6) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
-    }
-    else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 5) {
-        playerMessage.textContent = 'Comprar carta'
-        await dealCard(playerDiv, playerCards)
-        await checkMove(countCardsValues(playerCards, playerCardsValue))
+
+    async function dealCardsInicialCards(div, cardsArray) {
+        await dealCard(div, cardsArray)
     }
 
-}
+    function countCardsValues(cardsArray, valueDiv) {
+        let result = 0;
+        cardsArray.forEach(card => {
+            result += card.value
+        });
+        valueDiv.textContent = `O valor das cartas é: ${result}`;
+        return result
+    }
 
-async function checkMoveDealer() {
-    
-    await awaitTime();
-    let dealer = countCardsValues(dealerCards, dealerCardsValue)
-    let player = countCardsValues(playerCards, playerCardsValue)
-    let playerPerson = countCardsValues(playerPersonCards, playerCardsPersonValue)
-    if(dealer > 21)
-    {
-        dealerCards.forEach(card => {
-            if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
-                card.value = 1
-                return checkMoveDealer();
-            }
+
+    async function startGame() {
+
+        buttonStart.disabled = true
+
+        await dealCardsInicialCards(dealerDiv, dealerCards);
+
+        await dealCardsInicialCards(playerDiv, playerCards);
+
+        await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
+
+        await dealCardsInicialCards(dealerDiv, dealerCards);
+
+        await dealCardsInicialCards(playerDiv, playerCards);
+
+        await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
+
+        await checkMove(countCardsValues(playerCards, playerCardsValue));
+
+    }
+
+
+
+    async function checkMove(playerCardsScore) {
+        const card = dealerCards[1].value
+
+        if (playerCardsScore > 21) {
+            playerCards.forEach(card => {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+                    card.value = 1
+                    checkMove(countCardsValues(playerCards, playerCardsValue))
+                } else {
+                    countCardsValues(playerCards, playerCardsValue)
+                    playerMessage.textContent = 'Estorou'
+                    buttonHit.onclick = dealCardPerson;
+                    return buttonStop.onclick = checkMoveDealer;
+                }
+            })
+        }
+        else if (playerCardsScore === 21) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if (card >= 2 && card <= 11 && playerCardsScore >= 17) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        //ARRUMARRRRRRRRRRRRRRRRR
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6) && playerCardsScore === 16) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 16) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6) && playerCardsScore === 15) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 15) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6) && playerCardsScore === 14) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 14) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6) && playerCardsScore === 13) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if ((card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 13) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 4 || card === 5 || card === 6) && playerCardsScore === 12) {
+            playerMessage.textContent = 'Parar'
+            buttonStop.onclick = checkMoveDealer;
+            return buttonHit.onclick = dealCardPerson;
+        }
+        else if ((card === 2 || card === 3 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 12) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 11) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 10) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 9) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 8) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 7) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 6) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+        else if ((card === 2 || card === 3 || card === 4 || card === 5 || card === 6 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 5) {
+            playerMessage.textContent = 'Comprar carta'
+            await dealCard(playerDiv, playerCards)
+            await checkMove(countCardsValues(playerCards, playerCardsValue))
+        }
+
+    }
+
+    async function checkMoveDealer() {
+        await delay();
+        let dealer = countCardsValues(dealerCards, dealerCardsValue)
+        let player = countCardsValues(playerCards, playerCardsValue)
+        let playerPerson = countCardsValues(playerPersonCards, playerCardsPersonValue)
+        if (dealer > 21) {
+            dealerCards.forEach(card => {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+                    card.value = 1
+                    return checkMoveDealer();
+                }
+            })
+        }
+        ///arrumar
+
+        const backimg = document.getElementById('back-card');
+
+        if (backimg) {
+            backimg.src = `/cards/${dealerCards[0].src}`
+            backimg.id = 'reveal-card';
+        }
+
+        if (dealer < 16) {
+            await dealCard(dealerDiv, dealerCards)
+            return checkMoveDealer();
+        }
+
+        checkWinner(dealer, player, winner);
+        checkWinner(dealer, playerPerson, winnerPerson);
+    }
+
+    async function checkWinner(dealer, player, text) {
+        if (dealer > 21 && player <= 21) {
+            await delay();
+            text.textContent = 'O PLAYER GANHOU DA MESA'
+        }
+        else if (dealer < 21 && player > 21) {
+            await delay();
+            text.textContent = 'A MESA GANHOU'
+        }
+        else if (dealer > 21 && player > 21) {
+            await delay();
+            text.textContent = 'EMPATE'
+        }
+        else if (dealer === player) {
+            await delay();
+            text.textContent = 'EMPATE'
+        }
+        else if (dealer > player) {
+            await delay();
+            text.textContent = 'MESA GANHOU'
+        }
+        else if (dealer < player) {
+            await delay();
+            text.textContent = 'PLAYER GANHOU'
+        }
+    }
+
+    function delay() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve()
+            }, 1500)
         })
     }
-    ///arrumar
 
-    const backimg = document.getElementById('back-card');
-
-    if(backimg){
-        backimg.src = `/cards/${dealerCards[0].src}`
-        backimg.id = 'reveal-card';
+    async function reloadPage() {
+        document.location.reload(true);
     }
-
-    if (dealer < 16) {
-        await dealCard(dealerDiv, dealerCards)
-        return checkMoveDealer();
-    }
-
-    checkWinner(dealer,player,winner);
-    checkWinner(dealer,playerPerson,winnerPerson);
-}
-
-async function checkWinner(dealer,player,text){
-    if(dealer > 21 && player <=21){
-        await awaitTime();
-        text.textContent = 'O PLAYER GANHOU DA MESA'
-    }
-    else if(dealer < 21 && player > 21){
-        await awaitTime();
-        text.textContent = 'A MESA GANHOU'
-    }
-    else if(dealer > 21 && player > 21){
-        await awaitTime();
-        text.textContent = 'EMPATE'
-    }
-    else if(dealer === player ){
-        await awaitTime();
-        text.textContent = 'EMPATE'
-    }
-    else if(dealer > player){
-        await awaitTime();
-        text.textContent = 'MESA GANHOU'
-    }
-    else if(dealer < player){
-        await awaitTime();
-        text.textContent = 'PLAYER GANHOU'
-    }
-}
-
-function awaitTime() {
-
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve()
-        }, 1500)
-    })
-}
-
-async function reloadPage() {
-    document.location.reload(true);
-}
+})()
