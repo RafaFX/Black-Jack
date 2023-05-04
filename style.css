@@ -2,18 +2,19 @@ body {
     /* background-image: url(fundo-mesa4.jpg) ;
     background-position: center;
     background-size: 110% auto; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background: rgb(44,164,114);
     background: radial-gradient(circle, rgba(44,164,114,1) 0%, rgba(0,44,27,1) 100%);
     justify-content: center;
 }
 
 button {
-    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     width: 120px;
     margin: 8px;
     background-color: white;
     color: black;
-    border: 2px solid #4CAF50;
+    border: 2px solid rgb(44,164,114);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -26,9 +27,8 @@ button {
 }
 
 button:hover {
-    background-color: #4CAF50;
+    background-color: rgb(44,164,114);
     color: white;
-    width: 220px;
 }
 
 img {
@@ -63,7 +63,9 @@ img {
 #dealer-section {
     height: 600px;
     display: flex;
-    border: 2px solid black;
+    border: 8px solid black;
+    border-style: double;
+    border-radius: 8px;
     flex-direction: column;
     align-items: center;
 }
@@ -72,23 +74,29 @@ img {
     width: 50%;
     height: 600px;
     display: flex;
-    border: 2px solid black;
+    border: 8px solid black;
+    border-style: double;
+    border-radius: 8px;
     align-items: center;
     flex-direction: column;
+    margin: 15px;
 }
 
 #player-section-person {
     width: 50%;
     height: 600px;
     display: flex;
-    border: 2px solid black;
+    border: 8px solid black;
+    border-style: double;
+    border-radius: 8px;
     align-items: center;
     flex-direction: column;
+    margin: 15px;
 }
 
 #div-button {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin: 15px 15px;
     height: 200px;
@@ -116,4 +124,48 @@ img {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+}
+
+#dealer-cards {
+    height: 370px;
+}
+
+#player-cards {
+    height: 370px;
+}
+
+#player-cards-person {
+    height: 370px;
+}
+
+#winner-person {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(44,164,114);
+    border-radius: 8px;
+    background-color: aliceblue;
+    width: 30%;
+    height: 80px;
+    font-size: 30px;
+}
+
+#winner {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(44,164,114);
+    border-radius: 8px;
+    background-color: aliceblue;
+    width: 30%;
+    height: 80px;
+    font-size: 30px;
 }
