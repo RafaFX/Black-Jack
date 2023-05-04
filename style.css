@@ -1,9 +1,13 @@
 body {
+    background-image: url(fundo-mesa4.jpg) ;
+    background-position: center;
+    background-size: 110% auto;
     justify-content: center;
     background-color: green;
 }
 
 button {
+
     width: 120px;
     margin: 8px;
     background-color: white;
