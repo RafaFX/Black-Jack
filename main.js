@@ -66,7 +66,7 @@
         })
     }
 
-    async function dealCardsInicialCards(div, cardsArray) {
+    async function dealInicialCards(div, cardsArray) {
         await dealCard(div, cardsArray)
     }
 
@@ -84,17 +84,17 @@
 
         buttonStart.disabled = true
 
-        await dealCardsInicialCards(dealerDiv, dealerCards);
+        await dealInicialCards(dealerDiv, dealerCards);
 
-        await dealCardsInicialCards(playerDiv, playerCards);
+        await dealInicialCards(playerDiv, playerCards);
 
-        await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
+        await dealInicialCards(playerPersonDiv, playerPersonCards);
 
-        await dealCardsInicialCards(dealerDiv, dealerCards);
+        await dealInicialCards(dealerDiv, dealerCards);
 
-        await dealCardsInicialCards(playerDiv, playerCards);
+        await dealInicialCards(playerDiv, playerCards);
 
-        await dealCardsInicialCards(playerPersonDiv, playerPersonCards);
+        await dealInicialCards(playerPersonDiv, playerPersonCards);
 
         await checkMove(countCardsValues(playerCards, playerCardsValue));
 
@@ -268,6 +268,9 @@
         else if (dealer < player) {
             await delay();
             text.textContent = 'PLAYER GANHOU'
+        }
+        else {
+            console.log('error')
         }
     }
 
