@@ -6,6 +6,7 @@ body {
     background: rgb(44,164,114);
     background: radial-gradient(circle, rgba(44,164,114,1) 0%, rgba(0,44,27,1) 100%);
     justify-content: center;
+    max-height: 100vh;
 }
 
 button {
@@ -15,7 +16,7 @@ button {
     background-color: white;
     color: black;
     border: 2px solid rgb(44,164,114);
-    padding: 15px 32px;
+    padding: 10px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -33,7 +34,7 @@ button:hover {
 
 img {
     position: relative;
-    width: 240px;
+    width: 140px;
     margin: 8px;
     transition-duration: 0.4s;
     transition: all;
@@ -61,7 +62,7 @@ img {
 }
 
 #dealer-section {
-    height: 600px;
+    height: 330px;
     display: flex;
     border: 8px solid black;
     border-style: double;
@@ -71,27 +72,26 @@ img {
 }
 
 #player-section {
+
     width: 50%;
-    height: 600px;
     display: flex;
     border: 8px solid black;
     border-style: double;
     border-radius: 8px;
     align-items: center;
     flex-direction: column;
-    margin: 15px;
+    margin-left: 8px;
 }
 
 #player-section-person {
     width: 50%;
-    height: 600px;
     display: flex;
     border: 8px solid black;
     border-style: double;
     border-radius: 8px;
     align-items: center;
     flex-direction: column;
-    margin: 15px;
+    margin-right: 8px;
 }
 
 #div-button {
@@ -107,7 +107,7 @@ img {
     flex-direction: column;
     align-items: center;
     margin: 15px 15px;
-    height: 200px;
+
     flex-direction: row;
     align-items: flex-end;
 }
@@ -119,6 +119,7 @@ img {
 }
 
 #box-results {
+    height: 100px;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
@@ -127,15 +128,15 @@ img {
 }
 
 #dealer-cards {
-    height: 370px;
+    height: 200px;
 }
 
 #player-cards {
-    height: 370px;
+    height: 200px;
 }
 
 #player-cards-person {
-    height: 370px;
+    height: 200px;
 }
 
 #winner-person {
@@ -150,7 +151,7 @@ img {
     border-radius: 8px;
     background-color: aliceblue;
     width: 30%;
-    height: 80px;
+    height: 40px;
     font-size: 30px;
 }
 
@@ -166,6 +167,12 @@ img {
     border-radius: 8px;
     background-color: aliceblue;
     width: 30%;
-    height: 80px;
+    height: 40px;
     font-size: 30px;
 }
+
+
+h1 {
+    margin: 20px 0px 0px 0px;
+}
+

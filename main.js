@@ -1,4 +1,4 @@
-(function () {
+//(function () {
 
     const dealerDiv = document.getElementById('dealer-cards');
     const dealerCardsValue = document.getElementById('dealerCardsValue');
@@ -52,20 +52,26 @@
 
 
 
-    function dealCardPerson() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const cardimg = document.createElement('img')
+    async function dealCardPerson() {
+        await delay();
+        if (countCardsValues(playerPersonCards, playerCardsPersonValue > 21)) {
+            playerPersonCards.forEach(card => {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+                    card.value = 1
+                    countCardsValues(playerPersonCards, playerCardsPersonValue)
+                }
+            })
+        }
+        const cardimg = document.createElement('img')
 
-                const card = cards[getRandomInt()]
+        const card = cards[getRandomInt()]
 
-                cardimg.src = `/cards/${card.src}`
+        cardimg.src = `/cards/${card.src}`
 
-                playerPersonDiv.appendChild(cardimg);
-                playerPersonCards.push(card)
-                resolve()
-            }, 1500)
-        })
+        playerPersonDiv.appendChild(cardimg);
+        playerPersonCards.push(card)
+        countCardsValues(playerPersonCards, playerCardsPersonValue);
+
     }
 
     async function dealInicialCards(div, cardsArray) {
@@ -287,4 +293,4 @@
     async function reloadPage() {
         document.location.reload(true);
     }
-})()
+// })()
