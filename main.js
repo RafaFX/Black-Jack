@@ -30,6 +30,9 @@
     const playerCards = []
     const playerPersonCards = []
 
+    let playerPoints = 0
+    let personPoints = 0
+
     function getRandomInt() {
         return Math.floor(Math.random() * 52);
     }
@@ -50,18 +53,11 @@
         cardsArray.push(card)
     }
 
-
+    let aCardPerson = true
 
     async function dealCardPerson() {
         await delay();
-        if (countCardsValues(playerPersonCards, playerCardsPersonValue > 21)) {
-            playerPersonCards.forEach(card => {
-                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
-                    card.value = 1
-                    countCardsValues(playerPersonCards, playerCardsPersonValue)
-                }
-            })
-        }
+        
         const cardimg = document.createElement('img')
 
         const card = cards[getRandomInt()]
@@ -71,6 +67,16 @@
         playerPersonDiv.appendChild(cardimg);
         playerPersonCards.push(card)
         countCardsValues(playerPersonCards, playerCardsPersonValue);
+
+        if (countCardsValues(playerPersonCards, playerCardsPersonValue > 21)) {
+            playerPersonCards.forEach(card => {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40 && aCardPerson ) {
+                    aCardPerson = false
+                    card.value = 1
+                    countCardsValues(playerPersonCards, playerCardsPersonValue)
+                }
+            })
+        }
 
     }
 
@@ -108,14 +114,15 @@
 
     }
 
-
+    let aCardPlayer = true
 
     async function checkMove(playerCardsScore) {
         const card = dealerCards[1].value
 
         if (playerCardsScore > 21) {
             playerCards.forEach(card => {
-                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40 && aCardPlayer) {
+                    aCardPlayer = false
                     card.value = 1
                     checkMove(countCardsValues(playerCards, playerCardsValue))
                 } else {
@@ -224,6 +231,8 @@
         }
     }
 
+    let aCardDealer = true
+
     async function checkMoveDealer() {
         await delay();
         let dealer = countCardsValues(dealerCards, dealerCardsValue)
@@ -231,7 +240,8 @@
         let playerPerson = countCardsValues(playerPersonCards, playerCardsPersonValue)
         if (dealer > 21) {
             dealerCards.forEach(card => {
-                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40) {
+                if (card.id === 37 || card.id === 38 || card.id === 39 || card.id === 40 && aCardDealer) {
+                    aCardDealer = false
                     card.value = 1
                     return checkMoveDealer();
                 }

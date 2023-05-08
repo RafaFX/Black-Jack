@@ -1,10 +1,7 @@
 body {
-    /* background-image: url(fundo-mesa4.jpg) ;
-    background-position: center;
-    background-size: 110% auto; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background: rgb(44,164,114);
-    background: radial-gradient(circle, rgba(44,164,114,1) 0%, rgba(0,44,27,1) 100%);
+    background: rgb(44, 164, 114);
+    background: radial-gradient(circle, rgba(44, 164, 114, 1) 0%, rgba(0, 44, 27, 1) 100%);
     justify-content: center;
     max-height: 100vh;
 }
@@ -15,7 +12,7 @@ button {
     margin: 8px;
     background-color: white;
     color: black;
-    border: 2px solid rgb(44,164,114);
+    border: 2px solid rgb(44, 164, 114);
     padding: 10px 16px;
     text-align: center;
     text-decoration: none;
@@ -28,7 +25,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(44,164,114);
+    background-color: rgb(44, 164, 114);
     color: white;
 }
 
@@ -147,7 +144,7 @@ img {
     align-items: center;
     background-color: white;
     color: black;
-    border: 2px solid rgb(44,164,114);
+    border: 2px solid rgb(44, 164, 114);
     border-radius: 8px;
     background-color: aliceblue;
     width: 30%;
@@ -163,7 +160,7 @@ img {
     align-items: center;
     background-color: white;
     color: black;
-    border: 2px solid rgb(44,164,114);
+    border: 2px solid rgb(44, 164, 114);
     border-radius: 8px;
     background-color: aliceblue;
     width: 30%;
@@ -171,8 +168,36 @@ img {
     font-size: 30px;
 }
 
+#poker-chips {
+    width: 80px;
+}
+
+#chips-player {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 95px;
+    width: 50%;
+    border: 8px solid black;
+    border-style: double;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+#chips-person {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 95px;
+    width: 50%;
+    border: 8px solid black;
+    border-style: double;
+    border-radius: 8px;
+    margin-right: 8px;
+}
 
 h1 {
     margin: 20px 0px 0px 0px;
 }
-
