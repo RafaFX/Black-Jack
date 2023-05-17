@@ -134,97 +134,116 @@
             })
         }
         else if (playerCardsScore === 21) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if (card >= 2 && card <= 11 && playerCardsScore >= 17) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         //ARRUMARRRRRRRRRRRRRRRRR
         else if ((card >= 2 && card <= 6) && playerCardsScore === 16) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if ((card >= 7 && card <= 11) && playerCardsScore === 16) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 6) && playerCardsScore === 15) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if ((card >= 7 && card <= 11) && playerCardsScore === 15) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 6) && playerCardsScore === 14) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if ((card >= 7 && card <= 11) && playerCardsScore === 14) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 6) && playerCardsScore === 13) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if ((card >= 7 && card <= 11) && playerCardsScore === 13) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 4 && card <= 6) && playerCardsScore === 12) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Não comprar'
             buttonStop.onclick = checkMoveDealer;
             return buttonHit.onclick = dealCardPerson;
         }
         else if ((card === 2 || card === 3 || card === 7 || card === 8 || card === 9 || card === 10 || card === 11) && playerCardsScore === 12) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 11) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 10) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 9) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 8) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 7) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 6) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
         }
         else if ((card >= 2 && card <= 11) && playerCardsScore === 5) {
+            await delay();
             playerMessage.textContent = 'Jogada da IA: Comprar carta'
             await dealCard(playerDiv, playerCards)
             await checkMove(countCardsValues(playerCards, playerCardsValue))
